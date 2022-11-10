@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    x:Class="MauiMatrix.Views.NewAnimationPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:MauiMatrix.Views"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    xmlns:vm="clr-namespace:MauiMatrix.ViewModels"
+    x:DataType="vm:NewAnimationViewModel">
+
+    <ContentPage.Resources>
+        <Style x:Key="InvalidEntryStyle" TargetType="Entry">
+            <Setter Property="TextColor" Value="Red" />
+        </Style>
+        <Style x:Key="ValidEntryStyle" TargetType="Entry">
+            <Setter Property="TextColor" Value="Green" />
+        </Style>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <StackLayout>
+            <Label
+                HorizontalOptions="Center"
+                Text="New Animation"
+                TextColor="Purple"
+                VerticalOptions="Center" />
+            <Entry Keyboard="Numeric" Text="{Binding AnimationWidth}">
+                <Entry.Behaviors>
+                    <toolkit:NumericValidationBehavior
+                        Flags="ValidateOnValueChanged"
+                        InvalidStyle="{StaticResource InvalidEntryStyle}"
+                        MaximumDecimalPlaces="2"
+                        MaximumValue="100.0"
+                        MinimumValue="1.0"
+                        ValidStyle="{StaticResource ValidEntryStyle}" />
+                </Entry.Behaviors>
+            </Entry>
+            <Entry Keyboard="Numeric" Text="{Binding AnimationHeight}">
+                <Entry.Behaviors>
+                    <toolkit:NumericValidationBehavior
+                        Flags="ValidateOnValueChanged"
+                        InvalidStyle="{StaticResource InvalidEntryStyle}"
+                        MaximumDecimalPlaces="2"
+                        MaximumValue="100.0"
+                        MinimumValue="1.0"
+                        ValidStyle="{StaticResource ValidEntryStyle}" />
+                </Entry.Behaviors>
+            </Entry>
+            <Entry Text="{Binding FileName}" />
+            <Button Command="{Binding CreateAnimationCommand}" Text="Create Animation" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

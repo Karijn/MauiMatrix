@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    x:Class="MauiMatrix.Views.HomePage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:MauiMatrix.Views"
+    xmlns:vm="clr-namespace:MauiMatrix.ViewModels"
+    Title="{Binding Title}"
+    x:DataType="vm:HomeViewModel">
+
+    <Grid
+        ColumnSpacing="5"
+        RowDefinitions="*,Auto"
+        RowSpacing="0">
+
+        <!--<RefreshView
+            Grid.ColumnSpan="2"
+            Command="{Binding RefreshFilesCommand}"
+            >-->
+
+        <ScrollView Background="orange">
+
+            <CollectionView ItemsSource="{Binding Files}" SelectionMode="None">
+                <!--  EmptyView  -->
+                <CollectionView.EmptyView>
+                    <StackLayout Padding="100">
+                        <Label Text="No files found" />
+                    </StackLayout>
+                </CollectionView.EmptyView>
+
+                <!--  ItemsLayout  -->
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Vertical" />
+                    <!--<GridItemsLayout Orientation="Vertical" Span="3"/>-->
+                    <!--<GridItemsLayout Orientation="Horizontal" Span="5" />-->
+                </CollectionView.ItemsLayout>
+
+                <!--  ItemTemplate  -->
+                <CollectionView.ItemTemplate>
+
+                    <DataTemplate x:DataType="vm:AnimationFileInfo">
+                        <Grid Padding="10">
+                            <Frame Style="{StaticResource CardView}">
+                                <Frame.GestureRecognizers>
+
+                                    <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type vm:HomeViewModel}}, Path=GoToDetailsCommand}" CommandParameter="{Binding .}" />
+                                </Frame.GestureRecognizers>
+
+                                <Grid ColumnDefinitions="*,125">
+                                    <VerticalStackLayout Grid.Column="0" Padding="10">
+                                        <Label Style="{StaticResource LargeLabel}" Text="{Binding FileName}" />
+                                        <Label
+                                            Grid.Column="1"
+                                            Style="{StaticResource SmallLabel}"
+                                            Text="10 images" />
+                                    </VerticalStackLayout>
+                                    <VerticalStackLayout Grid.Column="1" Padding="10">
+                                        <Label
+                                            HorizontalTextAlignment="End"
+                                            Style="{StaticResource SmallLabel}"
+                                            Text="size (10 * 10)" />
+                                    </VerticalStackLayout>
+                                </Grid>
+                            </Frame>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </ScrollView>
+        <!--</RefreshView>-->
+
+        <Grid Grid.Row="1" ColumnDefinitions="*,*">
+            <Button
+                Grid.Column="0"
+                Margin="8"
+                Command="{Binding NewAnimationCommand}"
+                IsEnabled="{Binding IsNotBusy}"
+                Style="{StaticResource ButtonOutline}"
+                Text="New Animation" />
+
+            <Button
+                Grid.Column="1"
+                Margin="8"
+                Command="{Binding RefreshFilesCommand}"
+                IsEnabled="{Binding IsNotBusy}"
+                Style="{StaticResource ButtonOutline}"
+                Text="Refresh files" />
+
+        </Grid>
+
+        <ActivityIndicator
+            Grid.RowSpan="2"
+            Grid.ColumnSpan="2"
+            HorizontalOptions="FillAndExpand"
+            IsRunning="{Binding IsBusy}"
+            IsVisible="{Binding IsBusy}"
+            VerticalOptions="CenterAndExpand" />
+    </Grid>
+
+</ContentPage>

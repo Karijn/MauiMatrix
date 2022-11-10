@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    x:Class="MauiMatrix.Views.AnimationPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:MauiMatrix.Controls"
+    xmlns:local="clr-namespace:MauiMatrix.Views"
+    xmlns:mct="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    xmlns:vm="clr-namespace:MauiMatrix.ViewModels"
+    Title="{Binding Title}"
+    x:DataType="vm:AnimationViewModel">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <mct:EnumToBoolConverter x:Key="PlatformConverter" />
+
+            <vm:TouchEventArgsToInteractionConverter x:Key="TouchEventArgsToInteractionConverter" />
+
+            <SolidColorBrush x:Key="TrueColorBrush">Green</SolidColorBrush>
+            <SolidColorBrush x:Key="FalseColorBrush">Red</SolidColorBrush>
+            <mct:BoolToObjectConverter
+                x:Key="BoolToColorBrushConverter"
+                FalseObject="{StaticResource FalseColorBrush}"
+                TrueObject="{StaticResource TrueColorBrush}" />
+
+        </ResourceDictionary>
+
+        <Style TargetType="Button">
+            <Setter Property="HeightRequest" Value="50" />
+            <Setter Property="WidthRequest" Value="50" />
+            <Setter Property="Margin" Value="1, 0" />
+            <Setter Property="FontSize" Value="Small" />
+        </Style>
+
+        <Style TargetType="Grid">
+            <Setter Property="VisualStateManager.VisualStateGroups">
+                <VisualStateGroupList>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal" />
+                        <VisualState x:Name="Selected">
+                            <VisualState.Setters>
+                                <Setter Property="BackgroundColor" Value="LightSkyBlue" />
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </Setter>
+        </Style>
+    </ContentPage.Resources>
+
+    <Grid
+        ColumnDefinitions="*, Auto"
+        RowDefinitions="Auto, Auto, Auto, *"
+        RowSpacing="10">
+        <Grid
+            ColumnDefinitions="Auto, *"
+            RowDefinitions="*, *"
+            RowSpacing="5">
+
+            <GraphicsView
+                x:Name="m_GraphicsView2"
+                Grid.Row="0"
+                Grid.RowSpan="2"
+                Grid.Column="0"
+                Margin="10,10"
+                HeightRequest="{Binding AnimationHeight}"
+                HorizontalOptions="Start"
+                VerticalOptions="Start"
+                WidthRequest="{Binding AnimationWidth}" />
+
+            <HorizontalStackLayout Grid.Row="0" Grid.Column="1">
+                <Label Text="0 ..." />
+                <Label Text="{Binding LastIndex}" />
+
+                <Stepper
+                    Increment="1"
+                    IsEnabled="{Binding HasImages}"
+                    Maximum="{Binding LastIndex}"
+                    WidthRequest="80"
+                    Value="{Binding CurrentEdit}" />
+                <Label HorizontalOptions="Center" Text="{Binding CurrentEdit}" />
+            </HorizontalStackLayout>
+
+            <HorizontalStackLayout Grid.Row="1" Grid.Column="1">
+
+                <Label HorizontalOptions="Center" Text="Zoom " />
+
+                <Label HorizontalOptions="Center" Text="{Binding PixelSize}" />
+                <Stepper
+                    HorizontalOptions="Center"
+                    Increment="1"
+                    Maximum="30"
+                    Minimum="10"
+                    WidthRequest="80"
+                    Value="{Binding PixelSize}" />
+                <Label Text="{Binding HoverPos}" />
+            </HorizontalStackLayout>
+        </Grid>
+
+        <VerticalStackLayout Grid.RowSpan="3" Grid.Column="1">
+            <Button
+                Margin="0,2,0,0"
+                Command="{Binding SaveImageCommand}"
+                Text="Save" />
+            <Button
+                Margin="0,0,0,2"
+                Command="{Binding GoBackCommand}"
+                Text="Back" />
+
+            <Button Command="{Binding InsertImageCommand}" Text="Insert" />
+
+            <Button Command="{Binding AddImageCommand}" Text="Add" />
+            <Button
+                Margin="0,0,0,2"
+                Command="{Binding CopyImageCommand}"
+                Text="Copy" />
+            <Button
+                Margin="0,0,0,2"
+                Command="{Binding DeleteImageCommand}"
+                Text="Del" />
+            <Button Command="{Binding MoveImageToStartCommand}" Text="|&lt;-" />
+            <Button Command="{Binding MoveImageBackCommand}" Text="&lt;-" />
+            <Button Command="{Binding MoveImageForwardCommand}" Text="-&gt;" />
+            <Button
+                Margin="0,0,0,2"
+                Command="{Binding MoveImageToEndCommand}"
+                Text="-&gt;|" />
+
+            <VerticalStackLayout RadioButtonGroup.GroupName="CurrentTool" RadioButtonGroup.SelectedValue="{Binding SelectedTool}">
+                <RadioButton Content="Draw" Value="{Static vm:GraphicTool.DrawDot}" />
+                <RadioButton Content="Fill" Value="{Static vm:GraphicTool.Fill}" />
+            </VerticalStackLayout>
+            <!--<CheckBox
+                         IsChecked="{Binding SelectedTool, Converter={StaticResource PlatformConverter}, ConverterParameter={x:Static vm:GraphicTool.Fill}}"/>
+            <HorizontalStackLayout HorizontalOptions="Center" />-->
+
+        </VerticalStackLayout>
+
+        <ScrollView
+            Grid.Row="1"
+            Grid.ColumnSpan="1"
+            HorizontalScrollBarVisibility="Always"
+            VerticalOptions="Start"
+            VerticalScrollBarVisibility="Always">
+
+            <GraphicsView
+                x:Name="m_GraphicsView1"
+                Margin="10,0"
+                HeightRequest="{Binding EditHeight}"
+                HorizontalOptions="Start"
+                VerticalOptions="Start"
+                WidthRequest="{Binding EditWidth}">
+                <GraphicsView.Behaviors>
+
+                    <mct:EventToCommandBehavior
+                        Command="{Binding StartInteractionCommand}"
+                        EventArgsConverter="{StaticResource TouchEventArgsToInteractionConverter}"
+                        EventName="StartInteraction" />
+
+                    <mct:EventToCommandBehavior
+                        Command="{Binding StartInteractionCommand}"
+                        EventArgsConverter="{StaticResource TouchEventArgsToInteractionConverter}"
+                        EventName="EndInteraction" />
+
+                    <mct:EventToCommandBehavior
+                        Command="{Binding StartInteractionCommand}"
+                        EventArgsConverter="{StaticResource TouchEventArgsToInteractionConverter}"
+                        EventName="DragInteraction" />
+
+                    <mct:EventToCommandBehavior
+                        Command="{Binding StartHoverInteractionCommand}"
+                        EventArgsConverter="{StaticResource TouchEventArgsToInteractionConverter}"
+                        EventName="StartHoverInteraction" />
+
+                    <mct:EventToCommandBehavior
+                        Command="{Binding MoveHoverInteractionCommand}"
+                        EventArgsConverter="{StaticResource TouchEventArgsToInteractionConverter}"
+                        EventName="MoveHoverInteraction" />
+
+                    <mct:EventToCommandBehavior Command="{Binding EndHoverInteractionCommand}" EventName="EndHoverInteraction" />
+
+                </GraphicsView.Behaviors>
+            </GraphicsView>
+        </ScrollView>
+
+        <VerticalStackLayout Grid.Row="2" Grid.ColumnSpan="2">
+
+            <HorizontalStackLayout>
+
+                <CollectionView
+                    x:Name="collectionView"
+                    Margin="5,0,5,0"
+                    ItemsLayout="VerticalGrid, 10"
+                    ItemsSource="{Binding NameToColor}"
+                    SelectedItem="{Binding SelectedColor}"
+                    SelectionMode="Single"
+                    VerticalScrollBarVisibility="Always">
+
+                    <!--  Fill="{Binding Source={x:Reference CheckBox}, Path=IsChecked, Mode=TwoWay, Converter={StaticResource BoolToColorBrushConverter}}"  -->
+
+
+                    <!--  ItemTemplate  -->
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="vm:NameColor">
+                            <StackLayout
+                                BackgroundColor="Transparent"
+                                HeightRequest="28"
+                                WidthRequest="33">
+                                <Rectangle
+                                    Margin="2"
+                                    BackgroundColor="Black"
+                                    Fill="{Binding Background}"
+                                    HeightRequest="25"
+                                    StrokeThickness="3"
+                                    WidthRequest="25" />
+                            </StackLayout>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+
+            </HorizontalStackLayout>
+        </VerticalStackLayout>
+
+    </Grid>
+</ContentPage>

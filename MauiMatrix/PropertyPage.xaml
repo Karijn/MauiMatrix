@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="MauiMatrix.PropertyPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:viewmodel="clr-namespace:MauiMatrix.ViewModels"
+    Title="PropertyPage"
+    x:DataType="viewmodel:PropertyViewModel">
+
+    <ContentPage.BindingContext>
+        <viewmodel:PropertyViewModel />
+    </ContentPage.BindingContext>
+
+    <VerticalStackLayout>
+        <Label
+            HorizontalOptions="Center"
+            Text="{Binding Filename}"
+            VerticalOptions="Center" />
+
+        <Button Command="{Binding GoBackCommand}" Text="Go Back" />
+    </VerticalStackLayout>
+</ContentPage>
