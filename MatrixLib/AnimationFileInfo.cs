@@ -4,7 +4,7 @@ namespace MatrixLib;
 
 public class AnimationFileData
 {
-    public string FileName { get; set; }
+    public string FileName { get; set; } = string.Empty;
     public bool IsNewFile { get; set; }
     public int AnimationWidth { get; set; }
     public int AnimationHeight { get; set; }

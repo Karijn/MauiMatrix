@@ -1,7 +1,4 @@
-﻿using Android.Content;
-using Android.Views.InputMethods;
-using Android.Widget;
-using MauiMatrix.ViewModels;
+﻿using MauiMatrix.ViewModels;
 
 namespace MauiMatrix.Views
 {

@@ -293,7 +293,7 @@ public partial class AnimationViewModel : BaseViewModel
     public void SaveImage()
     {
         var folder = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal);
-        var file = Path.Combine(folder, fileName + ".animation");
+        var file = Path.Combine(folder, fileName);
 
         MatrixLib.AnimationSerializer.Save(file, Animation);
 

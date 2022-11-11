@@ -112,8 +112,7 @@ namespace MauiMatrix.ViewModels
                 return;
 
             var folder = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal);
-            var file = Path.Combine(folder, animationFileInfo.FileName + ".animation");
-            //AnimationVM.Animation = AnimationSerializer.Load(file);
+            var file = Path.Combine(folder, animationFileInfo.FileName );
 
             await Shell.Current.GoToAsync(nameof(AnimationPage), true, new Dictionary<string, object>
             {
@@ -141,12 +140,7 @@ namespace MauiMatrix.ViewModels
                         NrOfImages = data.NrOfImages,
                         NrOfColors = data.NrOfColors
                     };
-                    //var animation = new AnimationFileInfo { FileName = fileName };
                     files.Add(animation);
-
-                    //var path = Path.GetFileNameWithoutExtension(fileName);
-                    //var animation = new AnimationFileInfo { FileName = path };
-                    //files.Add(animation);
                 }
             }
             finally

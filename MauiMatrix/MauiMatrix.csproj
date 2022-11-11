@@ -1,10 +1,10 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFrameworks>net6.0-android;net6.0-ios;net6.0-maccatalyst</TargetFrameworks>
-		<TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net6.0-windows10.0.19041.0</TargetFrameworks>
+		<TargetFrameworks>net7.0-ios;net7.0-maccatalyst;net7.0-android33.0</TargetFrameworks>
+		<TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net7.0-windows10.0.19041.0</TargetFrameworks>
 		<!-- Uncomment to also build the tizen app. You will need to install tizen by following this: https://github.com/Samsung/Tizen.NET -->
-		<!-- <TargetFrameworks>$(TargetFrameworks);net6.0-tizen</TargetFrameworks> -->
+		<!-- <TargetFrameworks>$(TargetFrameworks);net7.0-tizen</TargetFrameworks> -->
 		<OutputType>Exe</OutputType>
 		<RootNamespace>MauiMatrix</RootNamespace>
 		<UseMaui>true</UseMaui>
@@ -16,14 +16,14 @@
 
 		<!-- App Identifier -->
 		<ApplicationId>com.companyname.mauimatrix</ApplicationId>
-		<ApplicationIdGuid>9C9EAECD-1CFD-44B0-AEF6-832591FDBFA8</ApplicationIdGuid>
+		<ApplicationIdGuid>c6b6e2fa-8e29-4120-9ff1-8f3062f6d474</ApplicationIdGuid>
 
 		<!-- Versions -->
 		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
 		<ApplicationVersion>1</ApplicationVersion>
 
-		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">14.2</SupportedOSPlatformVersion>
-		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'maccatalyst'">14.0</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">11.0</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'maccatalyst'">13.1</SupportedOSPlatformVersion>
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">21.0</SupportedOSPlatformVersion>
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</SupportedOSPlatformVersion>
 		<TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion>
@@ -32,12 +32,10 @@
 
 	<ItemGroup>
 		<!-- App Icon -->
-		<MauiIcon Include="Resources\AppIcon\appicon.svg" 
-              ForegroundFile="Resources\AppIcon\appiconfg.svg" 
-              Color="#512BD4" />
-		<MauiSplashScreen Include="Resources\Splash\splash.png" />
+		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4" />
 
 		<!-- Splash Screen -->
+		<MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#512BD4" BaseSize="128,128" />
 
 		<!-- Images -->
 		<MauiImage Include="Resources\Images\*" />
@@ -51,54 +49,12 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <AndroidResource Remove="Model\**" />
-	  <Compile Remove="Model\**" />
-	  <EmbeddedResource Remove="Model\**" />
-	  <MauiCss Remove="Model\**" />
-	  <MauiXaml Remove="Model\**" />
-	  <None Remove="Model\**" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <None Remove="Resources\Images\arrow_insert.png" />
-	  <None Remove="Resources\Splash\splash.png" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <PackageReference Include="CommunityToolkit.Maui" Version="1.4.0" />
-	  <PackageReference Include="CommunityToolkit.Mvvm" Version="8.0.0" />
-	  <PackageReference Include="Microsoft.Maui.Graphics" Version="6.0.403" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <MauiXaml Update="Controls\MatrixView.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="PropertyPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\AnimationPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\ColorsPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\HomePage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\NewAnimationPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
+		<PackageReference Include="CommunityToolkit.Maui" Version="3.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
 	</ItemGroup>
 
 	<ItemGroup>
 	  <ProjectReference Include="..\MatrixLib\MatrixLib.csproj" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <Compile Update="Views\HomePage.xaml.cs">
-	    <DependentUpon>HomePage.xaml</DependentUpon>
-	  </Compile>
 	</ItemGroup>
 
 </Project>

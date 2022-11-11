@@ -28,7 +28,6 @@ namespace MauiMatrix.Services
                         NrOfImages = data.NrOfImages,
                         NrOfColors = data.NrOfColors
                     };
-                    //var animation = new AnimationFileInfo { FileName = fileName };
                     list.Add(animation);
                 }
             });
