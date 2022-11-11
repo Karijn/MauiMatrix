@@ -4,6 +4,8 @@ using CommunityToolkit.Maui.Converters;
 
 namespace MauiMatrix.ViewModels;
 
+#nullable enable
+
 public class TouchEventArgsToInteractionConverter : BaseConverterOneWay<TouchEventArgs?, object?>
 {
     public TouchEventArgsToInteractionConverter()
@@ -16,13 +18,14 @@ public class TouchEventArgsToInteractionConverter : BaseConverterOneWay<TouchEve
         set;
     } = null;
 
+
     /// <summary>
-	/// Converts/Extracts the incoming value from <see cref="TouchEventArgs"/> object and returns the value of <see cref="ItemTappedEventArgs.Item"/> property from it.
-	/// </summary>
-	/// <param name="value">The value to convert.</param>
-	/// <param name="culture">(Not Used)</param>
-	/// <returns>A <see cref="TouchEventArgs.Item"/> object from object of type <see cref="TouchEventArgs"/>.</returns>
-	[return: NotNullIfNotNull("value")]
+    /// Converts/Extracts the incoming value from <see cref="TouchEventArgs"/> object and returns the value of <see cref="ItemTappedEventArgs.Item"/> property from it.
+    /// </summary>
+    /// <param name="value">The value to convert.</param>
+    /// <param name="culture">(Not Used)</param>
+    /// <returns>A <see cref="TouchEventArgs.Item"/> object from object of type <see cref="TouchEventArgs"/>.</returns>
+    [return: NotNullIfNotNull("value")]
     public override object? ConvertFrom(TouchEventArgs? value, CultureInfo? culture = null) =>
         value switch
         {
@@ -51,3 +54,5 @@ public class TouchEventArgsToInteractionConverter : BaseConverterOneWay<TouchEve
         };
     }
 }
+
+#nullable restore

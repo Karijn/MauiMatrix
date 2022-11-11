@@ -6,6 +6,7 @@
     xmlns:local="clr-namespace:MauiMatrix.Views"
     xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     xmlns:vm="clr-namespace:MauiMatrix.ViewModels"
+    Title="Animation"
     x:DataType="vm:NewAnimationViewModel">
 
     <ContentPage.Resources>

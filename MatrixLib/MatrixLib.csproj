@@ -8,7 +8,7 @@
 
   <ItemGroup>
     <PackageReference Include="CommunityToolkit.Mvvm" Version="8.0.0" />
-    <PackageReference Include="Microsoft.Maui.Graphics" Version="6.0.501" />
+    <PackageReference Include="Microsoft.Maui.Graphics" Version="7.0.49" />
   </ItemGroup>
 
 </Project>

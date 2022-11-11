@@ -21,6 +21,12 @@ public enum GraphicTool
     Fill
 }
 
+public enum AnimationPageMode
+{
+    AnimationEdit,
+    ColorsSelect,
+    ItemsOrder
+}
 
 
 [QueryProperty(nameof(AnimationFileInfo), "AnimationFileInfo")]
@@ -176,9 +182,12 @@ public partial class AnimationViewModel : BaseViewModel
 
         selectedColor = NameToColor[0];
         SelectedTool = GraphicTool.DrawDot;
+        AnimationPageMode = AnimationPageMode.AnimationEdit;
     }
 
     AnimationFileInfo _animationFileInfo;
+
+
 
     public AnimationFileInfo AnimationFileInfo
     {
@@ -212,6 +221,8 @@ public partial class AnimationViewModel : BaseViewModel
     [ObservableProperty]
     GraphicTool selectedTool;
 
+    [ObservableProperty]
+    AnimationPageMode animationPageMode;
 
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(Title))]
@@ -259,10 +270,6 @@ public partial class AnimationViewModel : BaseViewModel
     [ObservableProperty]
     string hoverPos;
 
-
-    public int EditWidth => Animation.Width * (pixelSize + pixelGap) + pixelGap;
-    public int EditHeight => Animation.Height * (pixelSize + pixelGap) + pixelGap;
-
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(AnimationHeight))]
     [NotifyPropertyChangedFor(nameof(AnimationWidth))]
@@ -272,22 +279,14 @@ public partial class AnimationViewModel : BaseViewModel
     [NotifyPropertyChangedFor(nameof(AnimationHeight))]
     [NotifyPropertyChangedFor(nameof(AnimationWidth))]
     int animationPixelGap = 2;
+
     public int AnimationHeight => Animation.Height * (animationPixelSize + animationPixelGap) + animationPixelGap;
     public int AnimationWidth => Animation.Width * (animationPixelSize + animationPixelGap) + animationPixelGap;
-
-    public string Title
-    {
-        get
-        {
-            return $"Animation: {FileName ?? "Unknown"}";
-        }
-        set
-        {
-
-        }
-    }
+    public int EditWidth => Animation.Width * (pixelSize + pixelGap) + pixelGap;
+    public int EditHeight => Animation.Height * (pixelSize + pixelGap) + pixelGap;
 
 
+    public string Title => $"Animation: {FileName ?? "Unknown"}";
 
     [RelayCommand]
     public void SaveImage()
@@ -296,7 +295,6 @@ public partial class AnimationViewModel : BaseViewModel
         var file = Path.Combine(folder, fileName);
 
         MatrixLib.AnimationSerializer.Save(file, Animation);
-
     }
 
     [RelayCommand]
@@ -348,6 +346,7 @@ public partial class AnimationViewModel : BaseViewModel
             CurrentEdit--;
         }
     }
+
     [RelayCommand]
     void MoveImageForward()
     {
@@ -379,13 +378,6 @@ public partial class AnimationViewModel : BaseViewModel
             OnPropertyChanged(nameof(CurrentEdit));
         }
     }
-
-    [RelayCommand]
-    public void ItemTapped(object o)
-    {
-
-    }
-
 
     [RelayCommand]
     public void StartHoverInteraction(InteractionParams point)

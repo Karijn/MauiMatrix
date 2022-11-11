@@ -6,23 +6,21 @@
     xmlns:local="clr-namespace:MauiMatrix"
     xmlns:views="clr-namespace:MauiMatrix.Views"
     Shell.FlyoutBehavior="Disabled"
-    >
-    <!--
-    Shell.NavBarIsVisible="False"
-    -->
+    Shell.NavBarIsVisible="True">
 
-    <!--<Shell.BackButtonBehavior>
+    <Shell.BackButtonBehavior>
         <BackButtonBehavior IsVisible="False" IsEnabled="False" />
-    </Shell.BackButtonBehavior>-->
+    </Shell.BackButtonBehavior>
 
-    <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate views:HomePage}"
-        />
+    <Shell.FlyoutBackground>
+        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+            <GradientStop Offset="0.1" Color="#8A2387" />
+            <GradientStop Offset="0.6" Color="#E94057" />
+            <GradientStop Offset="1.0" Color="#F27121" />
+        </LinearGradientBrush>
+    </Shell.FlyoutBackground>
 
+    <ShellContent Title="Home" ContentTemplate="{DataTemplate views:HomePage}" />
 
-    <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate views:ColorsPage}"
-        />
+    <ShellContent Title="Home" ContentTemplate="{DataTemplate views:ColorsPage}" />
 </Shell>
