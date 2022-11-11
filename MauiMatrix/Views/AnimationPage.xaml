@@ -144,7 +144,6 @@
                     Command="{Binding MoveImageToEndCommand}"
                     FontSize="9"
                     Text="-&gt;|" />
-
                 <VerticalStackLayout RadioButtonGroup.GroupName="CurrentTool" RadioButtonGroup.SelectedValue="{Binding SelectedTool}">
                     <RadioButton
                         Margin="0,0,2,2"
@@ -257,7 +256,7 @@
             IsVisible="{Binding AnimationPageMode, Converter={StaticResource PlatformConverter}, ConverterParameter={x:Static vm:AnimationPageMode.ItemsOrder}}"
             RowDefinitions="Auto, Auto, Auto, *, Auto"
             RowSpacing="10">
-            
+
             <VerticalStackLayout Grid.Row="2" Grid.ColumnSpan="1">
 
                 <Button
@@ -273,7 +272,7 @@
 
             </VerticalStackLayout>
         </Grid>
-        
+
         <VerticalStackLayout mct:DockLayout.DockPosition="Bottom">
 
             <Label IsVisible="{Binding AnimationPageMode, Converter={StaticResource PlatformConverter}, ConverterParameter={x:Static vm:AnimationPageMode.AnimationEdit}}" Text="I am visible when Edit." />
