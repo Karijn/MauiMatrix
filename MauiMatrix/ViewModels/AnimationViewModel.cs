@@ -34,6 +34,153 @@ public partial class AnimationViewModel : BaseViewModel
 {
     public AnimationViewModel()
     {
+#if false
+        NameToColor = new ObservableCollection<Color>
+        {
+/* 0  *  */    Colors.Black ,
+/* 1  *  */    Colors.White,
+/* 2  *  */    Colors.DarkGrey,
+/* 3  *  */    Colors.Grey,
+/* 4  *  */    Colors.Silver,
+/* 5  *  */    Colors.LightGrey,
+/* 6  *  */     Colors.Brown,
+/* 7  *  */     Colors.DarkRed,
+/* 8  *  */    Colors.Red,
+/* 9  *  */     Colors.OrangeRed,
+/* 0  *  */     Colors.DarkOrange,
+/* 1  *  */     Colors.Orange,
+/* 2  *  */     Colors.Purple,
+/* 3  *  */     Colors.MediumPurple,
+/* 4  *  */    Colors.MediumVioletRed,
+/* 5  *  */    Colors.Gold,
+/* 6  *  */     Colors.Yellow,
+/* 7  *  */     Colors.DarkGreen,
+/* 8  *  */     Colors.ForestGreen,
+/* 9  *  */    Colors.Green,
+/* 0  *  */    Colors.LawnGreen,
+/* 1  *  */     Colors.LightGreen,
+/* 2  *  */    Colors.MediumSpringGreen,
+/* 3  *  */     Colors.SpringGreen,
+/* 4  *  */     Colors.DarkOliveGreen,
+/* 5     */     Colors.Chartreuse,
+/* 6     */     Colors.Lime,
+/* 7     */     Colors.Aqua,
+/* 8     */     Colors.YellowGreen,
+/* 9     */     Colors.GreenYellow,
+/* 0     */    Colors.LimeGreen,
+/* 1  *  */     Colors.PaleGreen,
+/* 2  *  */    Colors.LightSeaGreen,
+/* 3  *  */     Colors.MediumSeaGreen,
+/* 4  *  */    Colors.DarkSeaGreen,
+/* 5  *  */    Colors.SeaGreen,
+/* 6  *  */    Colors.LightCyan,
+/* 7  *  */     Colors.DarkCyan,
+/* 8  *  */     Colors.Cyan,
+/* 9  *  */     Colors.DeepPink,
+/* 0  *  */     Colors.HotPink,
+/* 1  *  */    Colors.Pink,
+/* 2  *  */     Colors.LightPink,
+/* 3  *  */     Colors.DarkBlue,
+/* 4  *  */     Colors.Blue,
+/* 5  *  */     Colors.LightBlue,
+/* 6  *  */     Colors.LightSkyBlue,
+/* 7  *  */     Colors.DeepSkyBlue,
+/* 8  *  */    Colors.SkyBlue,
+/* 9  *  */     Colors.MidnightBlue,
+/* 0  *  */     Colors.CadetBlue,
+/* 1  *  */    Colors.CornflowerBlue,
+/* 2  *  */     Colors.DodgerBlue,
+/* 3  *  */     Colors.PowderBlue,
+/* 4  *  */     Colors.MediumBlue,
+/* 5  *  */     Colors.LightSteelBlue,
+/* 6  *  */    Colors.SteelBlue,
+/* 7  *  */    Colors.RoyalBlue,
+/* 8  *  */     Colors.MediumSlateBlue,
+/* 9  *  */     Colors.DarkSlateBlue,
+/* 0  *  */    Colors.SlateBlue,
+/* 1  *  */    Colors.AliceBlue,
+/* 2  *  */     Colors.Navy,
+/* 3  *  */     Colors.MistyRose,
+/* 4  *  */    Colors.MediumTurquoise,
+/* 5  *  */    Colors.DarkTurquoise,
+/* 6  *  */    Colors.PaleTurquoise,
+/* 7  *  */    Colors.Turquoise,
+/* 8  *  */     Colors.Ivory,
+/* 9  *  */     Colors.Snow,
+/* 0  *  */     Colors.Honeydew,
+/* 1  *  */     Colors.Peru,
+/* 2  *  */     Colors.DarkViolet,
+/* 3  *  */    Colors.BlueViolet,
+/* 4  *  */     Colors.Violet,
+/* 5  *  */     Colors.Wheat,
+/* 6  *  */     Colors.Lavender,
+/* 7  *  */    Colors.PapayaWhip,
+/* 8  *  */    Colors.Tomato,
+/* 9  *  */     Colors.Gainsboro,
+/* 0  *  */     Colors.Indigo,
+/* 1  *  */     Colors.Crimson,
+/* 2  *  */     Colors.Maroon,
+/* 3  *  */     Colors.LemonChiffon,
+/* 4  *  */     Colors.Moccasin,
+/* 5  *  */    Colors.Linen,
+/* 6  *  */    Colors.Tan,
+/* 7  *  */     Colors.Plum,
+/* 8  *  */     Colors.MintCream,
+/* 9  *  */     Colors.SeaShell,
+/* 0  *  */     Colors.LightCoral,
+/* 1  *  */     Colors.Coral,
+/* 2  *  */     Colors.Teal,
+/* 3  *  */    Colors.Cornsilk,
+/* 4  *  */     Colors.Firebrick,
+/* 5  *  */     Colors.DarkKhaki,
+/* 6  *  */     Colors.Khaki,
+/* 7  *  */     Colors.LavenderBlush,
+/* 8  *  */    Colors.PeachPuff,
+/* 9  *  */    Colors.Olive,
+/* 0  *  */     Colors.Bisque,
+/* 1  *  */     Colors.Chocolate,
+/* 2  *  */     Colors.Azure,
+/* 3  *  */    Colors.MediumAquamarine,
+/* 4  *  */    Colors.Aquamarine,
+/* 5  *  */     Colors.Thistle,
+/* 6  *  */    Colors.WhiteSmoke,
+/* 7  *  */    Colors.OldLace,
+/* 8  *  */    Colors.BurlyWood,
+/* 9  *  */     Colors.BlanchedAlmond,
+/* 0  *  */     Colors.MediumOrchid,
+/* 1  *  */     Colors.DarkOrchid,
+/* 2  *  */     Colors.Orchid,
+/* 3  *  */     Colors.OliveDrab,
+/* 4  *  */    Colors.DarkMagenta,
+/* 5  *  */     Colors.Magenta,
+/* 6  *  */     Colors.Sienna,
+/* 7  *  */     Colors.Fuchsia,
+/* 8  *  */     Colors.GhostWhite,
+/* 9  *  */    Colors.DimGrey,
+/* 0  *  */     Colors.LightSlateGrey,
+/* 1  *  */     Colors.DarkSlateGrey,
+/* 2  *  */     Colors.SlateGrey,
+/* 3  *  */    Colors.Beige,
+/* 4  *  */    Colors.DarkGoldenrod,
+/* 5  *  */    Colors.PaleGoldenrod,
+/* 6  *  */     Colors.Goldenrod,
+/* 7  *  */    Colors.PaleVioletRed,
+/* 8  *  */     Colors.IndianRed,
+/* 9  *  */     Colors.LightGoldenrodYellow,
+/* 0  *  */     Colors.NavajoWhite,
+/* 1  *  */    Colors.FloralWhite,
+/* 2  *  */     Colors.AntiqueWhite,
+/* 3  *  */    Colors.LightSalmon,
+/* 4  *  */     Colors.DarkSalmon,
+/* 5  *  */    Colors.Salmon,
+/* 6  *  */    Colors.RosyBrown,
+/* 7  *  */     Colors.SandyBrown,
+/* 8  *  */     Colors.SaddleBrown,
+/* 9  *  */     Colors.LightYellow,
+//=========================
+//              new NameColor("Transparent", Colors.Transparent),
+        };
+#else
         NameToColor = new ObservableCollection<NameColor>
         {
 /* 0  *  */    new NameColor("Black", Colors.Black ),
@@ -179,14 +326,13 @@ public partial class AnimationViewModel : BaseViewModel
 //=========================
 //              new NameColor("Transparent", Colors.Transparent),
         };
-
-        selectedColor = NameToColor[0];
+#endif
+//        NameToColor[5].Selected = true;
         SelectedTool = GraphicTool.DrawDot;
         AnimationPageMode = AnimationPageMode.AnimationEdit;
     }
 
     AnimationFileInfo _animationFileInfo;
-
 
 
     public AnimationFileInfo AnimationFileInfo
@@ -248,6 +394,9 @@ public partial class AnimationViewModel : BaseViewModel
 
     [ObservableProperty]
     NameColor selectedColor;
+    
+    [ObservableProperty]
+    object selectedObject;
 
     public bool HasImages => Animation.Count > 0;
     public int LastIndex => Animation.Count > 1 ? Animation.Count - 1 : 1;
@@ -402,6 +551,8 @@ public partial class AnimationViewModel : BaseViewModel
     [RelayCommand]
     public void StartInteraction(InteractionParams point)
     {
+        SelectedColor = NameToColor.FirstOrDefault(c => c.Selected);
+        if (SelectedColor == null) return;
         switch (selectedTool)
         {
             case GraphicTool.DrawDot:
@@ -427,8 +578,8 @@ public partial class AnimationViewModel : BaseViewModel
         }
 
         var oldColor = Animation[CurrentEdit][x, y];
-        if (oldColor == selectedColor.background) return;
-        FillColor(x, y, oldColor, selectedColor.background);
+        if (oldColor == selectedColor.Background) return;
+        FillColor(x, y, oldColor, selectedColor.Background);
         OnPropertyChanged(nameof(CurrentEdit));
     }
 
@@ -482,14 +633,14 @@ public partial class AnimationViewModel : BaseViewModel
     }
 
     [RelayCommand]
-    public void Fill(NameColor color)
+    public void Fill(Color color)
     {
         if (CurrentEdit < 0 || CurrentEdit >= Animation.Count - 1) return;
         for (int x = 0; x < Animation.Width; x++)
         {
             for (int y = 0; y < Animation.Height; y++)
             {
-                Animation[CurrentEdit][x, y] = color.Background;
+                Animation[CurrentEdit][x, y] = color;
             }
         }
         OnPropertyChanged(nameof(CurrentEdit));

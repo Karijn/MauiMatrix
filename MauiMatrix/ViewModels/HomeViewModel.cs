@@ -40,16 +40,17 @@ namespace MauiMatrix.ViewModels
     public partial class HomeViewModel : BaseViewModel
     {
         string mainDir;
-        
-        [ObservableProperty]
-        string title = "Home";
-
-        List<Point> points = new List<Point>();
 
         [ObservableProperty]
         [NotifyPropertyChangedFor(nameof(IsNotBusy))]
         bool isBusy = false;
+
         public bool IsNotBusy => !IsBusy;
+
+        [ObservableProperty]
+        string title = "Home";
+
+        List<Point> points = new List<Point>();
 
         //public AnimationViewModel AnimationVM { get; }
 
@@ -173,7 +174,7 @@ namespace MauiMatrix.ViewModels
             File.Delete(backingFile);
         }
 
-        private void DrawOn(Color[,] img, int len)
+        private void DrawOn(AnimationImage img, int len)
         {
             for (int i = 0; i < len; i++)
             {
@@ -184,7 +185,7 @@ namespace MauiMatrix.ViewModels
         private void WriteDummyFileAsync(string filename)
         {
             MatrixLib.Animation animation = new MatrixLib.Animation(10, 10);
-            Color[,] img;
+            AnimationImage img;
 
             for (int i = 0; i <= points.Count; i++)
             {

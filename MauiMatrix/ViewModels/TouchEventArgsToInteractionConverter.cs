@@ -24,7 +24,7 @@ public class TouchEventArgsToInteractionConverter : BaseConverterOneWay<TouchEve
     /// </summary>
     /// <param name="value">The value to convert.</param>
     /// <param name="culture">(Not Used)</param>
-    /// <returns>A <see cref="TouchEventArgs.Item"/> object from object of type <see cref="TouchEventArgs"/>.</returns>
+    /// <returns>A <see cref="TouchEventArgs"/> object from object of type <see cref="TouchEventArgs"/>.</returns>
     [return: NotNullIfNotNull("value")]
     public override object? ConvertFrom(TouchEventArgs? value, CultureInfo? culture = null) =>
         value switch

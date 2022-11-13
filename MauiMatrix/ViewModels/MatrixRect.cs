@@ -10,8 +10,8 @@ namespace MauiMatrix.ViewModels;
 [ObservableObject]
 public partial class MatrixRect
 {
-    [ObservableProperty]
-    int index;
+    //[ObservableProperty]
+    //int index;
 
     [ObservableProperty]
     int x;
@@ -24,7 +24,7 @@ public partial class MatrixRect
 
     public MatrixRect(int x, int y, Color color)
     {
-        Index = y * 1000 + x;
+        //Index = y * 1000 + x;
         X = x;
         Y = y;
         Color = color;

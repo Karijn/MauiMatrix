@@ -15,6 +15,7 @@
             <mct:EnumToBoolConverter x:Key="PlatformConverter" />
 
             <vm:TouchEventArgsToInteractionConverter x:Key="TouchEventArgsToInteractionConverter" />
+            <mct:ColorToRgbStringConverter x:Key="ColorToRgbStringConverter" />
 
             <SolidColorBrush x:Key="TrueColorBrush">Green</SolidColorBrush>
             <SolidColorBrush x:Key="FalseColorBrush">Red</SolidColorBrush>
@@ -71,7 +72,6 @@
                 ColumnDefinitions="Auto, *"
                 RowDefinitions="*, *"
                 RowSpacing="5">
-
 
                 <HorizontalStackLayout Grid.Row="0" Grid.Column="1">
                     <Label Text="0 ..." />
@@ -215,31 +215,26 @@
             RowSpacing="10">
             <VerticalStackLayout Grid.Row="2" Grid.ColumnSpan="1">
 
-                <VerticalStackLayout>
+                <VerticalStackLayout RadioButtonGroup.GroupName="Colors" RadioButtonGroup.SelectedValue="{Binding SelectedObject}">
 
                     <CollectionView
+                        x:Name="m_ColorList"
                         Margin="5,0,5,0"
                         ItemsLayout="VerticalGrid, 10"
                         ItemsSource="{Binding NameToColor}"
-                        SelectedItem="{Binding SelectedColor}"
-                        SelectionMode="Single"
-                        VerticalScrollBarVisibility="Always">
+                        SelectionMode="Single">
 
-                        <!--  ItemTemplate  -->
                         <CollectionView.ItemTemplate>
                             <DataTemplate x:DataType="vm:NameColor">
-                                <StackLayout
-                                    BackgroundColor="Transparent"
-                                    HeightRequest="28"
-                                    WidthRequest="33">
-                                    <Rectangle
-                                        Margin="2"
-                                        BackgroundColor="Black"
-                                        Fill="{Binding Background}"
-                                        HeightRequest="25"
-                                        StrokeThickness="3"
-                                        WidthRequest="25" />
-                                </StackLayout>
+                                <RadioButton
+                                    Margin="1,1,1,1"
+                                    Background="{Binding Background}"
+                                    HeightRequest="36"
+                                    HorizontalOptions="Center"
+                                    IsChecked="{Binding Selected}"
+                                    VerticalOptions="Center"
+                                    WidthRequest="36"
+                                    Value="{Binding Name}" />
                             </DataTemplate>
                         </CollectionView.ItemTemplate>
                     </CollectionView>
@@ -283,7 +278,7 @@
 
             <HorizontalStackLayout RadioButtonGroup.GroupName="AnimationPageMode" RadioButtonGroup.SelectedValue="{Binding AnimationPageMode}">
                 <RadioButton Content="Animation" Value="{Static vm:AnimationPageMode.AnimationEdit}" />
-                <RadioButton Content="Colors" Value="{Static vm:AnimationPageMode.ColorsSelect}" />
+                <RadioButton Content="Colors2" Value="{Static vm:AnimationPageMode.ColorsSelect}" />
                 <RadioButton Content="Items" Value="{Static vm:AnimationPageMode.ItemsOrder}" />
             </HorizontalStackLayout>
 

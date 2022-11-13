@@ -57,7 +57,7 @@ namespace MatrixLib
 
                 for (int imageNr = 0; imageNr < nrOfImages; imageNr++)
                 {
-                    Color[,] bitmap = animation.New(Colors.Black);
+                    AnimationImage bitmap = animation.New(Colors.Black);
                     int numColors = fs.getWord();
 
                     for (int colorindex = 0; colorindex < numColors; colorindex++)
@@ -94,7 +94,7 @@ namespace MatrixLib
 
                 for (int imageIndex = 0; imageIndex < animation.Count; imageIndex++)
                 {
-                    Color[,] bitmap = animation[imageIndex];
+                    AnimationImage bitmap = animation[imageIndex];
                     Dictionary<Color, List<int>> colors = new();
                     for (int x = 0; x < w; x++)
                     {
@@ -178,7 +178,6 @@ namespace MatrixLib
             fs.WriteByte((byte)b);
         }
 
-
         public static void putWord(this FileStream fs, int w)
         {
             fs.WriteByte((byte)(w & 0xff));
@@ -202,9 +201,7 @@ namespace MatrixLib
             fs.putByte(g);
             fs.putByte(b);
         }
-
     }
-
 }
 
 

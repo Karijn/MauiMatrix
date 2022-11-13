@@ -15,13 +15,13 @@ public class GraphicsDrawable : View, IDrawable
 {
     public GraphicsDrawable()
     {
-        Items.CollectionChanged += Items_CollectionChanged;
+//        Items.CollectionChanged += Items_CollectionChanged;
     }
 
-    private void Items_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
-    {
-        var p = Parent;
-    }
+//    private void Items_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+//    {
+//        var p = Parent;
+//    }
 
     public ObservableCollection<MatrixRect> Items
     {
@@ -32,14 +32,15 @@ public class GraphicsDrawable : View, IDrawable
         }
     }
 
-    public static BindableProperty ItemsProperty = BindableProperty.Create(nameof(Items),
-                                                                            typeof(ObservableCollection<MatrixRect>),
-                                                                            typeof(GraphicsDrawable),
-                                                                            new ObservableCollection<MatrixRect>(), propertyChanged: async (bindable, oldValue, newValue) =>
-                                                                            {
-                                                                                var chartView = ((GraphicsDrawable)bindable);
-                                                                                chartView.Items = (ObservableCollection<MatrixRect>)newValue;
-                                                                            });
+    public static BindableProperty ItemsProperty =
+        BindableProperty.Create(nameof(Items),
+        typeof(ObservableCollection<MatrixRect>),
+        typeof(GraphicsDrawable),
+        new ObservableCollection<MatrixRect>(), propertyChanged: async (bindable, oldValue, newValue) =>
+        {
+            var chartView = ((GraphicsDrawable)bindable);
+            chartView.Items = (ObservableCollection<MatrixRect>)newValue;
+        });
 
     public void Draw(ICanvas canvas, RectF dirtyRect)
     {

@@ -10,5 +10,4 @@ namespace MauiMatrix.ViewModels
     public partial class BaseViewModel : ObservableObject
     {
     }
-
 }

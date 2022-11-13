@@ -3,6 +3,7 @@
 
 namespace MauiMatrix.ViewModels;
 
+
 public partial class NameColor : ObservableObject
 {
     public NameColor(string name, Color color)
@@ -17,5 +18,6 @@ public partial class NameColor : ObservableObject
     [ObservableProperty]
     public Color background;
 
+    [ObservableProperty]
+    public bool selected;
 }
-
